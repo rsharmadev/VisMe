@@ -5,6 +5,7 @@ from newspaper import Article
 from requests_html import HTML
 from requests_html import HTMLSession
 from flask import Flask, redirect, url_for, request
+from flask_cors import CORS, cross_origin
 
 # Send the get request to the specified url
 def getResults(url):
@@ -34,24 +35,31 @@ def parse_results(response):
         if ("topic" in result.find('.yuRUbf a', first=True).attrs['href']):
             pass
         else:
-            article = Article(url=result.find('.yuRUbf a', first=True).attrs['href'], language='en')
-            article.download()
-            article.parse()
-            item = {
-                'title': result.find('h3', first=True).text,
-                'link': result.find('.yuRUbf a', first=True).attrs['href'],
-                'text': result.find('.IsZvec', first=True).text,
-                'image': article.top_image,
-            }
-            output.append(item)
+            try:
+                article = Article(url=result.find('.yuRUbf a', first=True).attrs['href'], language='en')
+                article.download()
+                article.parse()
+                item = {
+                    "title": result.find('h3', first=True).text,
+                    "link": result.find('.yuRUbf a', first=True).attrs['href'],
+                    "text": result.find('.IsZvec', first=True).text,
+                    "image": article.top_image,
+                }
+                output.append(item)
+            except:
+                pass
+    print(output)
     return output
 
 app = Flask(__name__)
 
 @app.route('/search', methods=['POST'])
+@cross_origin()
 def search():
     print("Searching...")
-    query = '%s "%s"'%(request.form["query"], request.form["location"])
+    query = request.get_json()
+    query = '%s "%s"'%(query["query"], query["location"])
+    print(query)
     results = scrapeGoogle(query)
     return str(results)
 

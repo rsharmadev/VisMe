@@ -2,6 +2,22 @@ import logo from './assets/logo.svg';
 import './styles/News.css';
 
 function App() {
+
+  const localOptions = {
+    "method": "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      "query": "BLM",
+      "location": "maryland",
+    })
+  }
+  console.log("hi!")
+  fetch("http://127.0.0.1:5000/search", localOptions)
+    .then(response => response.json())
+    .then(data => { console.log(JSON.parse(data)) })
+
   return (
     <div className="App">
 		<header class="header">
@@ -14,8 +30,8 @@ function App() {
         <li><a href="#">HEATMAP</a></li>
       </ul>
 	  </header> 
-  <i class="fas fa-angle-left"></i>
-  </div>
+    <i class="fas fa-angle-left"></i>
+    </div>
   );
 }
 
