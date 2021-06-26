@@ -50,6 +50,7 @@ app = Flask(__name__)
 
 @app.route('/search', methods=['POST'])
 def search():
+    print("Searching...")
     query = '%s "%s"'%(request.form["query"], request.form["location"])
     results = scrapeGoogle(query)
     return str(results)
