@@ -2,6 +2,7 @@ import requests
 from requests_html import HTML
 from requests_html import HTMLSession
 import json
+from flask import Flask, request
 
 
 path = 'C:/Users/kprsh/Desktop/img/'
@@ -29,5 +30,20 @@ def saveImages(urls):
             f.write(requests.get(url).content)
 
 
+app = Flask(__name__)
+
+@app.route('/getImages', methods=['POST'])
+def getImages():
+    print(request.form)
+    url = request.get_json()
+    url = url['url']
+    print(url)
+    if url[-1] == '/':
+        url += '?__a=1'
+    else:
+        url += '/?__a=1'
+    getJson(url)
+    return 'downloaded'
+
 if __name__ == '__main__':
-    getJson('https://www.instagram.com/p/CPrCgdYr42B/?__a=1')
+    app.run(debug=True)
