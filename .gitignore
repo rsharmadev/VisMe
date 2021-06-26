@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+heatmap/data.json
+heatmap/json.js
+heatmap/output.json
+heatmap/require.js
