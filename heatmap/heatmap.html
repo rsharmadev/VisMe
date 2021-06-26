@@ -304,29 +304,40 @@
 ]
 
 
+      
+
+
 
 
       
 
 
-    function heatMapData() {
+    function heatMapData(type) {
         let listOfLatLng = [];
-        for(item of states) {
+        if(type=='protests') {
+          for(item of states) {
             listOfLatLng.push({location: new google.maps.LatLng(item['latitude'], item['longitude']), weight: json[item['state']]['protests']/100})
         }
+       } else {
+          for(item of states) {
+            listOfLatLng.push({location: new google.maps.LatLng(item['latitude'], item['longitude']), weight: json[item['state']]['fatalities']/100})
+        }
+        }
+        
         return listOfLatLng;
     }
 
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
+        zoom: 4,
         center: { lat: 39.065170, lng: -76.974440 },
         mapTypeId: "satellite",
         });
         heatmap = new google.maps.visualization.HeatmapLayer({
-        data: heatMapData(),
+        data: heatMapData(type),
         map: map,
+        radius: 85
         });
 
         new google.maps.Marker({
@@ -340,17 +351,52 @@
     
     function toggleHeatmap() {
     for(state of states) {
-        const marker = new google.maps.Marker({
-        position: {lat: state['latitude'], lng: state['longitude']},
-        map,
-        title: state['state'],
-        });
-        const infowindow = new google.maps.InfoWindow({
-            content: `Ooga booga`,
-        })
-        marker.addListener('click', () => {
-        infowindow.open(map, marker);
-        });
+        if(json[state['state']]['protests'] > 2000) {
+          console.log('here 0')
+          const marker = new google.maps.Marker({
+          position: {lat: state['latitude'], lng: state['longitude']},
+          map,
+          title: state['state'],
+          icon: 'http://maps.google.com/mapfiles/kml/shapes/caution.png'
+          });
+          const infowindow = new google.maps.InfoWindow({
+            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
+          });
+          console.log('here 3')
+          marker.addListener('click', () => {
+            infowindow.open(map, marker);
+          });
+        } else if(json[state['state']]['protests'] > 500){
+          console.log('here 1')
+          const marker = new google.maps.Marker({
+          position: {lat: state['latitude'], lng: state['longitude']},
+          map,
+          title: state['state'],
+          icon: 'http://maps.google.com/mapfiles/kml/pal3/icon45.png'
+          });
+          const infowindow = new google.maps.InfoWindow({
+            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
+          });
+          console.log('here 3')
+          marker.addListener('click', () => {
+            infowindow.open(map, marker);
+          });
+        } else {
+          console.log('here 2')
+          const marker = new google.maps.Marker({
+          position: {lat: state['latitude'], lng: state['longitude']},
+          map,
+          title: state['state'],
+          icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'
+          });
+          const infowindow = new google.maps.InfoWindow({
+            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
+          });
+          console.log('here 3')
+          marker.addListener('click', () => {
+            infowindow.open(map, marker);
+          });
+          }
     }
 }
 
@@ -383,6 +429,15 @@
         heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
     }
 
+    let type = 'protests'
+    function changeType() {
+      if(type=='protests') {
+        type = 'fatalities'
+      } else {
+        type = 'protests'
+      }
+      initMap();
+    }
       
     </script>
   </head>
@@ -392,6 +447,8 @@
       <button onclick="changeGradient()">Change gradient</button>
       <button onclick="changeRadius()">Change radius</button>
       <button onclick="changeOpacity()">Change opacity</button>
+      <button onclick="changeType()">Change TYPE</button>
+
     </div>
     <div id="map"></div>
 
