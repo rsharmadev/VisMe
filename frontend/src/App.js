@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() 
+function App() {
   return (
     <div className="App">
 		<header class="header">
@@ -22,4 +22,4 @@ function App()
 }
 
 export default App;
-https://kit.fontawesome.com/6564562c61.js
+//https://kit.fontawesome.com/6564562c61.js
