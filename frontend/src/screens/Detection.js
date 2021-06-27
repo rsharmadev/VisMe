@@ -3,6 +3,7 @@ import { Button, Jumbotron, Modal, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/Detection.css';
 import { getByDisplayValue } from '@testing-library/react';
+import logo from './assets/logo.PNG'
 
 function Detection() {
     // Autofill stuff
@@ -50,7 +51,20 @@ function Detection() {
     }
 
     return (
-        <div className="App">
+        <div class="main">
+            <div class="logoarea">
+                <img class="logo" src={logo} />
+            </div>
+            <br />
+            <h2 style={{color: statusColor}}>Fake: {statusFake}</h2>
+            <h2 style={{color: statusColor}}>Real: {statusReal}</h2>
+            <h2 style={{color: statusColor}}>{statusValue}</h2>
+            <input type="text" id="link" name="fname" placeholder="Enter text" class="search" onChange={data => handleChange(data)}></input>
+            <br />
+            <button> Submit</button>
+        </div>
+    )
+        {/*<div className="App">
             <div>
                 <Jumbotron style={{width: "80%", height: "35%", position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
                     <h2 style={{color: statusColor}}>{statusValue}</h2>
@@ -59,8 +73,8 @@ function Detection() {
                     <h2 style={{color: statusColor}}>Real: {statusReal}</h2>
                 </Jumbotron>
             </div>
-        </div>
-    );
+    </div>*
+    );*/}
 }
 
 export default Detection

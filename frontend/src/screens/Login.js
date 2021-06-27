@@ -6,6 +6,7 @@ import { getByDisplayValue } from '@testing-library/react';
 
 function Login() {
     // Autofill stuff
+    const [createNew, setCreateNew] = useState(false)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -20,7 +21,7 @@ function Login() {
                 </Button>
             </div>
         </div>
-    );
+    )
 }
 
 export default Login

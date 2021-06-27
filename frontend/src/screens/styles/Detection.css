@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -26,8 +27,7 @@ a {
 
 .logo {
   margin: 0;
-  font-size: 30px;
-  color: white;
+  font-size: ;
 }
 
 .main-nav {
@@ -35,23 +35,29 @@ a {
 }
 .logo a,
 .main-nav a {
-  padding: 3px 7px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   text-transform: uppercase;
   text-align: center;
   display: block;
-  font-size: 24px;
 }
 
 .main-nav a {
   color: white;
-  font-size: 0.99em;
+  font-size: 18px;
 }
 
 .main-nav a:hover {
-  color: #000000;
+  color: black;
 }
+
+.header {
+  background-color: #8785ff;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
 
 @media (min-width: 769px) {
   .header,
@@ -75,6 +81,64 @@ a {
     justify-content: space-between;
   }
 }
-.header {
-  background-color: #8785ff;
+.logoarea {
+  text-align: center;
+  margin-top: 3%;
+}
+img {
+  max-height: 130px;
+}
+.main {
+  text-align: center;
+}
+input {
+  margin-top: 2%;
+  min-width: 500px;
+  min-height: 50px;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding-left: 1%;
+}
+textarea {
+  margin-top: 2%;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 100px;
+  max-height: 100px;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding-left: 1%;
+}
+button {
+  background-color: #ff5e5e;
+  border-radius: 40px;
+  border: 0px;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Red Hat Display";
+  color: white;
+  margin-top: 3%;
+}
+button:hover {
+  background-color: black;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.linkbro {
+  color: rgb(102, 68, 253);
+  font-family: "Montserrat";
+  margin-left: 30%;
+  text-decoration: underline;
+  margin-top: -10%;
+}
+.search {
+  min-width: 1000px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.search:focus {
+  outline: none;
 }
