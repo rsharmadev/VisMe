@@ -38,6 +38,7 @@ class autofill {
                 return this.fillPetitionPage()
             } else {
                 await this.browser.close()
+                return;
             }
         }
     }
@@ -54,6 +55,7 @@ class autofill {
                 return this.finalize()
             } else {
                 await this.browser.close()
+                return;
             }
         }
     }

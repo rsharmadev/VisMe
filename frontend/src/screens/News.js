@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/News.css';
 
 function News() {
-  const [newsLoaded, setNewsLoaded] = useState(false);
   const [localNews, setLocalNews] = useState([]);
   const localOptions = {
     "method": "POST",
@@ -35,9 +34,9 @@ function News() {
       <div>
         {localNews.map((article) => console.log(article))}
       </div>
-      <div style={{ display: "flex", }}>
+      <div style={{ display: "flex", overflowX: "scroll" }}>
         { localNews.map((article) => (
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: 'auto', margin: 20, height: "50%" }}>
             <Card.Img variant="top" src={article.image} />
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
