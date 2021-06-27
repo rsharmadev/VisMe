@@ -13,7 +13,7 @@ function News() {
       "content-type": "application/json"
     },
     body: JSON.stringify({
-      "query": "black lives mattter news",
+      "query": "black lives mattter",
       "location": "maryland",
     })
   }

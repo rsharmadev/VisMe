@@ -16,8 +16,7 @@ import os
 def getResults(url):
     try:
         session = HTMLSession()
-        response = session.get(url, headers={'user-agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-                    'x-forwarded-for': '74.96.159.40',})
+        response = session.get(url)
         return response
     except requests.exceptions.RequestException as error:
         print(error)
@@ -74,6 +73,7 @@ def getJson(url):
     
 
 def extractUrls(json):
+    print(json)
     urls = []
     for item in json['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']:
         for key, value in item.items():
