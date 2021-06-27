@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import './styles/News.css';
 
 function News() {
@@ -22,14 +16,9 @@ function News() {
       "location": "maryland",
     })
   }
-  console.log("hi!")
-  if (!newsLoaded) {
-    fetch("http://127.0.0.1:5000/search", localOptions)
+  fetch("http://127.0.0.1:5000/search", localOptions)
       .then(response => response.json())
       .then(data => { setLocalNews(data) })
-    setNewsLoaded(true);
-  }
-
   return (
     <div className="App">
       { /*<header class="header">
