@@ -10,6 +10,7 @@ import {
 import './styles/News.css';
 
 function News() {
+  const [newsLoaded, setNewsLoaded] = useState(false);
   const [localNews, setLocalNews] = useState([]);
   const localOptions = {
     "method": "POST",
@@ -22,9 +23,12 @@ function News() {
     })
   }
   console.log("hi!")
-  fetch("http://127.0.0.1:5000/search", localOptions)
-    .then(response => response.json())
-    .then(data => { setLocalNews(data) })
+  if (!newsLoaded) {
+    fetch("http://127.0.0.1:5000/search", localOptions)
+      .then(response => response.json())
+      .then(data => { setLocalNews(data) })
+    setNewsLoaded(true);
+  }
 
   return (
     <div className="App">
@@ -42,7 +46,7 @@ function News() {
       <div>
         {localNews.map((article) => console.log(article))}
       </div>
-      <div>
+      <div style={{ display: "flex", }}>
         { localNews.map((article) => (
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={article.image} />

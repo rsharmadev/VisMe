@@ -16,7 +16,7 @@ export default function Index() {
     <Router>
       <div>
         <header class="header">
-            <h1 class="logo"><a href="#">VISME</a></h1>
+            <h1 class="logo">VISME</h1>
             <ul>
                 <li>
                     <Link to="/">NEWS</Link>
