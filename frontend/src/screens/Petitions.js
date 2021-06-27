@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Jumbotron, Modal } from 'react-bootstrap';
-//import Iframe from 'react-iframe'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/News.css';
 
@@ -16,12 +15,41 @@ function Petitions() {
     }]);
     const [petitionIndex, setPetitionIndex] = useState(0)
     const handleSkip = () => setPetitionIndex(petitionIndex+1);
+    const handleSign = () => {
+        const signOptions = {
+            "method": "POST",
+            headers: {
+              "content-type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+            },
+            body: JSON.stringify({
+                "link": petitionList[petitionIndex]["link"],
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+            })
+        }
+        fetch("http://127.0.0.1:4000/autofill", signOptions)
+    };
 
+    //Autofill info
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    
     useEffect(() => {
-        fetch("http://127.0.0.1:4000/")
-            .then(response => response.json())
-            .then(data => setPetitionList(data));
-        console.log(petitionList)
+        let test = 0;
+        if (test === 0) {
+            fetch("http://127.0.0.1:4000/")
+                .then(response => response.json())
+                .then(data =>  {
+                    test = 1
+                    setPetitionList(data)
+                });
+            console.log(petitionList)
+        }
     });
 
     return (
@@ -38,19 +66,21 @@ function Petitions() {
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="firstName"
+                    onChange={data => setFirstName(data)}
                 />
                 <label htmlFor="formGroupExampleInput">Last Name</label>
                 <input
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="lastName"
+                    onChange={data => setLastName(data)}
                 />
                 <label htmlFor="formGroupExampleInput">Email</label>
                 <input
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="email"
-                    onChange
+                    onChange={data => setEmail(data)}
                 />
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -68,18 +98,12 @@ function Petitions() {
                     <p>{petitionList[petitionIndex]["text"]}</p>
                     <div style={{position: 'absolute', left: '50%', transform: 'translate(-50%, 0%)'}}>
                         <Button variant="danger" onClick={handleSkip}>Skip</Button>
-                        <Button variant="success" style={{marginLeft: 20}} onClick={handleSkip}>Sign</Button>
+                        <Button variant="success" style={{marginLeft: 20}} onClick={handleSign}>Sign</Button>
                     </div>
                 </Jumbotron>
             </div>
         </div>
     );
-}
-
-let profile = {
-    "firstName": "Matthew",
-    "lastName": "Nanas",
-    "email": "spazeplayz@gmail.com"
 }
 
 export default Petitions;
