@@ -11,6 +11,7 @@ import Petitions from './screens/Petitions';
 import Heatmap from './screens/Heatmap';
 import Rooms from './screens/Rooms';
 import Detection from './screens/Detection'
+import Login from './screens/Login';
 
 export default function Index() {
   return (
@@ -30,7 +31,12 @@ export default function Index() {
                 </li>
                 <li>
                     <Link to="/Rooms">ROOMS</Link>
-                    <Link to="/Detection">DETECTION</Link>
+                </li>
+                <li>
+                  <Link to="/Detection">DETECTION</Link>
+                </li>
+                <li>
+                  <Link to="/Login">LOGIN</Link>
                 </li>
             </ul>
         </header> 
@@ -50,6 +56,9 @@ export default function Index() {
           </Route>
           <Route path="/Detection">
             <Detection />
+          </Route>
+          <Route path="/Login">
+            <Login />
           </Route>
         </Switch>
       </div>

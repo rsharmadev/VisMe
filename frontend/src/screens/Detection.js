@@ -52,9 +52,9 @@ function Detection() {
     return (
         <div className="App">
             <div>
-                <Jumbotron style={{width: "80%", height: "65%", position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
+                <Jumbotron style={{width: "80%", height: "35%", position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
                     <h2 style={{color: statusColor}}>{statusValue}</h2>
-                    <textarea value={areaValue} onChange={data => handleChange(data)} style={{width: "100%", height: "60%"}} />
+                    <Form.Control value={areaValue} onChange={data => handleChange(data)} size="lg" type="text" placeholder="Enter Link/Text" style={{width: "100%"}}/>
                     <h2 style={{color: statusColor}}>Fake: {statusFake}</h2>
                     <h2 style={{color: statusColor}}>Real: {statusReal}</h2>
                 </Jumbotron>
