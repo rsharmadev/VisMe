@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { Route, IndexRoute } from 'react-router';
+import { IndexRoute } from 'react-router';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import News from './screens/News';
+import Petitions from './screens/Petitions';
+import Rooms from './screens/Rooms';
+import Detector from './screens/Detector';
+import Heatmap from './screens/Heatmap';
+
 import reportWebVitals from './reportWebVitals';
+import NavBar from './components/navbar'
 
 ReactDOM.render(
   <React.StrictMode>
-    <News />
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact component={News} />
+        <Route path="/petitions" exact component={Petitions} />
+        <Route path="/rooms" exact component={Rooms} />
+        <Route path="/detector" exact component={Detector} />
+        <Route path="/heatmap" exact component={Heatmap} />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

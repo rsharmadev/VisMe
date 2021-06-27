@@ -22,6 +22,7 @@ function News() {
 
   return (
     <div className="App">
+      {/*
       <header class="header">
         <h1 class="logo"><a href="#">VISME</a></h1>
         <ul class="main-nav">
@@ -31,7 +32,12 @@ function News() {
           <li><a href="#">DETECTOR</a></li>
           <li><a href="#">HEATMAP</a></li>
         </ul>
-      </header> 
+      </header>
+      */}
+
+      <p>
+        ewoifhjweoijwefo wejfoi jwoife   
+      </p> 
       <i class="fas fa-angle-left"></i>
       <div>
         {localNews.map((article) => console.log(article))}
