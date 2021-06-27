@@ -108,7 +108,8 @@ ocrs = []
 @app.route('/getImages', methods=['POST'])
 @cross_origin()
 def getImages():
-    ocrs = []
+    print('called')
+    ocrs.clear()
     print(request.form)
     url = request.get_json()
     url = url['url']
@@ -122,6 +123,7 @@ def getImages():
     for filename in os.listdir('./img'):
         if filename.endswith('.png'):
             ocr(filename.replace('.png', ''))
+    print(ocrs)
     return jsonify(ocrs)
 
 
@@ -138,7 +140,7 @@ def ocr(num):
     img = cv2.dilate(img, kernel, iterations=1)
     out_below = pytesseract.image_to_string(img)
     ocrs.append(out_below)
-    print(ocrs)
+    # print(ocrs)
     
 
 
