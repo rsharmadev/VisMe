@@ -9,6 +9,8 @@ function Detection() {
     const [areaValue, setAreaValue] = useState("");
     const [statusValue, setStatusValue] = useState("Status: Idle")
     const [statusColor, setStatusColor] = useState("black")
+    const [statusFake, setStatusFake] = useState("0%")
+    const [statusReal, setStatusReal] = useState("0%")
 
     function handleChange(data) {
         try {
@@ -35,7 +37,12 @@ function Detection() {
                     if (req.status !== 200) throw new Error("Http error: " + req.status);
                     let result = JSON.parse(req.responseText);
                     console.log(result);
+                    setStatusFake(`${result.fake_probability * 100}%`)
+                    setStatusReal(`${result.real_probability * 100}%`)
+                    setStatusValue("Status: Complete!")
+                    setStatusColor("green")
                 }
+                req.send()
                 setStatusValue("Status: Processing...")
                 setStatusColor("blue")
             }  
@@ -45,9 +52,11 @@ function Detection() {
     return (
         <div className="App">
             <div>
-                <Jumbotron style={{width: "80%", height: "45%", position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
+                <Jumbotron style={{width: "80%", height: "65%", position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
                     <h2 style={{color: statusColor}}>{statusValue}</h2>
-                    <textarea value={areaValue} onChange={data => handleChange(data)} style={{width: "100%", height: "100%"}} />
+                    <textarea value={areaValue} onChange={data => handleChange(data)} style={{width: "100%", height: "60%"}} />
+                    <h2 style={{color: statusColor}}>Fake: {statusFake}</h2>
+                    <h2 style={{color: statusColor}}>Real: {statusReal}</h2>
                 </Jumbotron>
             </div>
         </div>
