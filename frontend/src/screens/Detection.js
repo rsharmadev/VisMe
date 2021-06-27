@@ -16,6 +16,17 @@ function Detection() {
             if (areaValue.includes("instagram.com")) {
                 setStatusValue("Status: Instagram detected...")
                 setStatusColor("orange")
+                fetch("http://127.0.0.1:5000/getImages", {
+                    "method": "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "url": areaValue,
+                    })
+                })
+                    .then(response => response.text())
+                    .then(result => console.log(result))
             } else {
                 setStatusValue("Status: Processing...")
                 setStatusColor("blue")

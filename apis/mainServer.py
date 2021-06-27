@@ -106,6 +106,7 @@ def search():
 ocrs = [];
 
 @app.route('/getImages', methods=['POST'])
+@cross_origin()
 def getImages():
     ocrs = []
     print(request.form)
