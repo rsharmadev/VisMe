@@ -28,6 +28,14 @@ function Detection() {
                     .then(response => response.text())
                     .then(result => console.log(result))
             } else {
+                let req = new XMLHttpRequest();
+                req.open("GET", 'http://192.168.1.206:8000/?' + areaValue, true)
+                req.onreadystatechange = () => {
+                    if (req.readyState !== 4) return;
+                    if (req.status !== 200) throw new Error("Http error: " + req.status);
+                    let result = JSON.parse(req.responseText);
+                    console.log(result);
+                }
                 setStatusValue("Status: Processing...")
                 setStatusColor("blue")
             }  
