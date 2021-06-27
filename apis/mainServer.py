@@ -123,7 +123,7 @@ def getImages():
         if filename.endswith('.png'):
             ocr(filename.replace('.png', ''))
 
-    return 'downloaded'
+    return ocrs
 
 
 
