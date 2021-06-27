@@ -1,7 +1,5 @@
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const puppeteer = require('puppeteer-extra');
-const cheerio = require('cheerio');
-const got = require('got');
 
 class autofill {
     constructor(url, profile) {
