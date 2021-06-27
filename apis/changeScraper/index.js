@@ -18,7 +18,7 @@ router.get('/', cors(), async (request, response) => {
 });
 
 router.post('/autofill', async (request, response) => {
-    console.log("test")
+    console.log(request.body)
     var autofiller = new autofill(request.body.link, request.body.firstName, request.body.lastName, request.body.email)
     autofiller.init()
 });

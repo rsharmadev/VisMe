@@ -16,28 +16,22 @@ function Petitions() {
     const [petitionIndex, setPetitionIndex] = useState(0)
     const handleSkip = () => setPetitionIndex(petitionIndex+1);
     const handleSign = () => {
+        console.log(petitionList[petitionIndex]["link"])
         const signOptions = {
-            "method": "POST",
+            method: "POST",
             headers: {
-              "content-type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                "link": petitionList[petitionIndex]["link"],
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
-            })
+            body: JSON.stringify({"link": petitionList[petitionIndex]["link"], "firstName": firstNames, "lastName": lastNames, "email": emails}),
         }
         fetch("http://127.0.0.1:4000/autofill", signOptions)
     };
 
     //Autofill info
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
+    const [firstNames, setFirstName] = useState("");
+    const [lastNames, setLastName] = useState("");
+    const [emails, setEmail] = useState("");
     
     useEffect(() => {
         let test = 0;
@@ -50,7 +44,7 @@ function Petitions() {
                 });
             console.log(petitionList)
         }
-    });
+    }, []);
 
     return (
         <div className="App">
