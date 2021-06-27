@@ -16,7 +16,8 @@ import os
 def getResults(url):
     try:
         session = HTMLSession()
-        response = session.get(url)
+        response = session.get(url, headers={'user-agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+                    'x-forwarded-for': '74.96.159.40',})
         return response
     except requests.exceptions.RequestException as error:
         print(error)
@@ -34,6 +35,7 @@ def getFullResults(query):
 
 # Structure the full results
 def parse_results(response):
+    print(response)
     output = []
     results = response.html.find('.tF2Cxc')
     for result in results:
@@ -65,6 +67,7 @@ path = './img'
 
 def getJson(url):
     session = HTMLSession()
+
     response = json.loads(session.get(url).text)
     print(response)
     extractUrls(response)
@@ -112,6 +115,7 @@ def getImages():
         url += '?__a=1'
     else:
         url += '/?__a=1'
+    print(url)
     getJson(url)
     for filename in os.listdir('./img'):
         if filename.endswith('.png'):
