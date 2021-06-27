@@ -17,7 +17,7 @@ function News() {
     })
   }
 
-  const globalOptions = {
+  /*const globalOptions = {
     "method": "POST",
     headers: {
       "content-type": "application/json"
@@ -26,7 +26,7 @@ function News() {
       "query": "global activism news",
       "location": "article",
     })
-  }
+  }*/
 
   useEffect(() => {
     let test = 0;
@@ -37,12 +37,12 @@ function News() {
           test = 1
           setLocalNews(data) 
         })
-      fetch("http://127.0.0.1:5000/search", globalOptions)
+      /*fetch("http://127.0.0.1:5000/search", globalOptions)
         .then(response => response.json())
         .then(data => { 
           test = 1
           setGlobalNews(data) 
-        })
+        })*/
     }
   }, []);
 
@@ -63,7 +63,7 @@ function News() {
         {localNews.map((article) => console.log(article))}
       </div>
       <div style={{display: 'flex'}}>
-        <h1>Global News</h1>
+        { /*<h1>Global News</h1>
         <div style={{ overflowX: "scroll", height: "auto", width: "30%" }}>
           { globalNews.map((article) => (
             <Card style={{ width: 'auto', margin: 20, }}>
@@ -75,7 +75,7 @@ function News() {
               </Card.Body>
             </Card>
           )) }
-        </div>
+          </div> */}
         <h1>Local News</h1>
         <div style={{ overflowX: "scroll", height: "auto", width: "30%" }}>
           { localNews.map((article) => (
