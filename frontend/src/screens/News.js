@@ -29,21 +29,17 @@ function News() {
   }*/
 
   useEffect(() => {
-    let test = 0;
-    if (test === 0) {
-      fetch("http://127.0.0.1:5000/search", localOptions)
-        .then(response => response.json())
-        .then(data => { 
-          test = 1
-          setLocalNews(data) 
-        })
+    fetch("http://127.0.0.1:5000/search", localOptions)
+      .then(response => response.json())
+      .then(data => { 
+        setLocalNews(data) 
+      })
       /*fetch("http://127.0.0.1:5000/search", globalOptions)
         .then(response => response.json())
         .then(data => { 
           test = 1
           setGlobalNews(data) 
         })*/
-    }
   }, []);
 
   return (
