@@ -4,7 +4,7 @@ import requests
 from newspaper import Article
 from requests_html import HTML
 from requests_html import HTMLSession
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, jsonify
 from flask_cors import CORS, cross_origin
 
 # Send the get request to the specified url
@@ -61,7 +61,7 @@ def search():
     query = '%s "%s"'%(query["query"], query["location"])
     print(query)
     results = scrapeGoogle(query)
-    return str(results)
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,7 +1,11 @@
-import logo from './assets/logo.svg';
+import React, { useState } from 'react';
+import { Button, Card } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/News.css';
 
 function App() {
+
+  const [localNews, setLocalNews] = useState([]);
 
   const localOptions = {
     "method": "POST",
@@ -9,28 +13,43 @@ function App() {
       "content-type": "application/json"
     },
     body: JSON.stringify({
-      "query": "BLM",
+      "query": "lgbt",
       "location": "maryland",
     })
   }
   console.log("hi!")
   fetch("http://127.0.0.1:5000/search", localOptions)
     .then(response => response.json())
-    .then(data => { console.log(JSON.parse(data)) })
+    .then(data => { setLocalNews(data) })
 
   return (
     <div className="App">
-		<header class="header">
-		  <h1 class="logo"><a href="#">VISME</a></h1>
-      <ul class="main-nav">
-        <li><a href="#">NEWS</a></li>
-        <li><a href="#">PETITIONS</a></li>
-        <li><a href="#">ROOMS</a></li>
-        <li><a href="#">DETECTOR</a></li>
-        <li><a href="#">HEATMAP</a></li>
-      </ul>
-	  </header> 
-    <i class="fas fa-angle-left"></i>
+      <header class="header">
+        <h1 class="logo"><a href="#">VISME</a></h1>
+        <ul class="main-nav">
+          <li><a href="#">NEWS</a></li>
+          <li><a href="#">PETITIONS</a></li>
+          <li><a href="#">ROOMS</a></li>
+          <li><a href="#">DETECTOR</a></li>
+          <li><a href="#">HEATMAP</a></li>
+        </ul>
+      </header> 
+      <i class="fas fa-angle-left"></i>
+      <div>
+        {localNews.map((article) => console.log(article))}
+      </div>
+      <div>
+        { localNews.map((article) => (
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={article.image} />
+            <Card.Body>
+              <Card.Title>{article.title}</Card.Title>
+              <Card.Text>{article.text}</Card.Text>
+              <Button variant="primary">View</Button>
+            </Card.Body>
+          </Card>
+        )) }
+      </div>
     </div>
   );
 }
