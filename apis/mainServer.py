@@ -103,10 +103,11 @@ def search():
     return jsonify(results)
 
 
-
+ocrs = [];
 
 @app.route('/getImages', methods=['POST'])
 def getImages():
+    ocrs = []
     print(request.form)
     url = request.get_json()
     url = url['url']
@@ -136,7 +137,9 @@ def ocr(num):
     img = cv2.erode(gray, kernel, iterations=1)
     img = cv2.dilate(img, kernel, iterations=1)
     out_below = pytesseract.image_to_string(img)
-    print("OUTPUT:", out_below)
+    ocrs.append(out_below)
+    print(ocrs)
+
 
 
 
