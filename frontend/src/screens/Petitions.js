@@ -19,9 +19,9 @@ function Petitions() {
     console.log(petitionList);
     const handleSkip = () => setPetitionIndex(petitionIndex+1);
     const handleSign = () => {
-        let a = firstName;
-        let b = lastName;
-        let c = email;
+        let a = firstNames;
+        let b = lastNames;
+        let c = emails;
         let d = petitionList[petitionIndex]["link"];
         console.log(a,b,c,d);
         const signOptions = {
