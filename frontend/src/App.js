@@ -9,6 +9,7 @@ import './index.css';
 import News from './screens/News';
 import Petitions from './screens/Petitions';
 import Heatmap from './screens/Heatmap';
+import Detection from './screens/Detection'
 
 export default function Index() {
   return (
@@ -26,6 +27,9 @@ export default function Index() {
                 <li>
                     <Link to="/Petitions">PETITIONS</Link>
                 </li>
+                <li>
+                    <Link to="/Detection">DETECTION</Link>
+                </li>
             </ul>
         </header> 
 
@@ -38,6 +42,9 @@ export default function Index() {
           </Route>
           <Route path="/Petitions">
             <Petitions />
+          </Route>
+          <Route path="/Detection">
+            <Detection />
           </Route>
         </Switch>
       </div>

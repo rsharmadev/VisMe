@@ -32,6 +32,7 @@ def parse_results(response):
     output = []
     results = response.html.find('.tF2Cxc')
     for result in results:
+        print("Parsing article")
         if ("topic" in result.find('.yuRUbf a', first=True).attrs['href']):
             pass
         else:
