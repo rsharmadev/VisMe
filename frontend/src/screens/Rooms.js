@@ -5,11 +5,11 @@ function Petitions() {
 
     return (
         <Iframe url="http://localhost:3000"
-        width="450px"
-        height="450px"
+        width="100%"
+        height="500px"
         id="myId"
         className="myClassname"
-        display="initial"
+        allowFullScreen="true"
         position="relative"
         allow="microphone; camera"
     />

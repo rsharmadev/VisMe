@@ -12,6 +12,10 @@ import numpy as np
 import cv2
 import os
 
+
+ocrs = ''
+
+
 # Send the get request to the specified url
 def getResults(url):
     try:
@@ -103,13 +107,13 @@ def search():
     return jsonify(results)
 
 
-ocrs = []
 
 @app.route('/getImages', methods=['POST'])
 @cross_origin()
 def getImages():
+    global ocrs
     print('called')
-    ocrs.clear()
+    ocrs = ''
     print(request.form)
     url = request.get_json()
     url = url['url']
@@ -129,6 +133,7 @@ def getImages():
 
 
 def ocr(num):
+    global ocrs
     print(num)
     pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
     img = cv2.imread(f'./img/{num}.png')
@@ -139,7 +144,7 @@ def ocr(num):
     img = cv2.erode(gray, kernel, iterations=1)
     img = cv2.dilate(img, kernel, iterations=1)
     out_below = pytesseract.image_to_string(img)
-    ocrs.append(out_below)
+    ocrs += out_below
     # print(ocrs)
     
 
