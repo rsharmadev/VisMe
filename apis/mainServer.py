@@ -103,7 +103,7 @@ def search():
     return jsonify(results)
 
 
-ocrs = [];
+ocrs = []
 
 @app.route('/getImages', methods=['POST'])
 @cross_origin()
@@ -122,14 +122,13 @@ def getImages():
     for filename in os.listdir('./img'):
         if filename.endswith('.png'):
             ocr(filename.replace('.png', ''))
-
-    return ocrs
+    return jsonify(ocrs)
 
 
 
 def ocr(num):
     print(num)
-    pytesseract.pytesseract.tesseract_cmd = 'C:/Users/Matthew/AppData/Local/Programs/Tesseract-OCRtesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
     img = cv2.imread(f'./img/{num}.png')
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     gray, img_bin = cv2.threshold(gray,128,255,cv2.THRESH_BINARY | cv2.THRESH_OTSU)
@@ -140,6 +139,7 @@ def ocr(num):
     out_below = pytesseract.image_to_string(img)
     ocrs.append(out_below)
     print(ocrs)
+    
 
 
 
