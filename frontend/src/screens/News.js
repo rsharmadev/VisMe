@@ -3,10 +3,8 @@ import { Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/News.css';
 
-function App() {
-
+function News() {
   const [localNews, setLocalNews] = useState([]);
-
   const localOptions = {
     "method": "POST",
     headers: {
@@ -54,5 +52,5 @@ function App() {
   );
 }
 
-export default App;
+export default News;
 //https://kit.fontawesome.com/6564562c61.js
