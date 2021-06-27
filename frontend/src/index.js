@@ -1,22 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import { Route, IndexRoute } from 'react-router';
-import './index.css';
-import News from './screens/News';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <News />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
-
-/*export default (
-  <Route path="/" component={News} />
-)*/

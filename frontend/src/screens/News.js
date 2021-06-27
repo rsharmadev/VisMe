@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './styles/News.css';
 
 function News() {
@@ -22,7 +28,7 @@ function News() {
 
   return (
     <div className="App">
-      <header class="header">
+      { /*<header class="header">
         <h1 class="logo"><a href="#">VISME</a></h1>
         <ul class="main-nav">
           <li><a href="#">NEWS</a></li>
@@ -31,7 +37,7 @@ function News() {
           <li><a href="#">DETECTOR</a></li>
           <li><a href="#">HEATMAP</a></li>
         </ul>
-      </header> 
+        </header> */}
       <i class="fas fa-angle-left"></i>
       <div>
         {localNews.map((article) => console.log(article))}
