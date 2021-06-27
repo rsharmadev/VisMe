@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&display=swap");
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Red Hat Display";
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h2,
+h3,
+a {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  margin: 0;
+  font-size: ;
+}
+
+.main-nav {
+  margin-top: 5px;
+}
+.logo a,
+.main-nav a {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+}
+
+.main-nav a {
+  color: white;
+  font-size: 18px;
+}
+
+.main-nav a:hover {
+  color: black;
+}
+
+.header {
+  background-color: #8785ff;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) {
+  .header,
+  .main-nav {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    .header {
+      width: 80%;
+      margin: 0 auto;
+      max-width: 1150px;
+    }
+  }
+}
+
+@media (min-width: 1025px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.card {
+  min-height: 550px;
+  max-width: 500px;
+  max-height: 600px;
+  max-width: 500px;
+  background-color: #e3d5d5;
+  margin: auto;
+  width: 50%;
+  margin-top: 2%;
+  box-shadow: 5px 10px #888888;
+}
+img {
+  max-width: 500px;
+}
+.headline {
+  text-align: center;
+  font-size: 24px;
+  margin-top: -0%;
+}
+.boxcontent {
+  margin-left: 2%;
+  margin-right: 2%;
+  min-height: 170px;
+  max-height: 170px;
+  background-color: white;
+  margin-top: -3%;
+}
+textarea {
+  min-width: 100%;
+  min-height: 170px;
+  outline: none;
+  border: 0px;
+  background-color: #e3d5d5;
+}
+button {
+  margin-top: 2%;
+  margin-left: 36%;
+  background-color: #ff5e5e;
+  border-radius: 40px;
+  border: 0px;
+  font-size: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Red Hat Display";
+  color: white;
+}
+button:hover {
+  background-color: black;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.icon1 {
+  font-size: 80px;
+  float: left;
+  margin-top: 250px;
+  margin-left: 80px;
+}
+.icon1:hover,
+.icon2:hover {
+  cursor: pointer;
+  color: rgb(121, 121, 248);
+}
+.icon2 {
+  float: right;
+  margin-right: 80px;
+  margin-top: -23%;
+  font-size: 80px;
+}
