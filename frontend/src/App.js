@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,7 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 import News from './screens/News';
-import reportWebVitals from './reportWebVitals';
+import Petitions from './screens/Petitions';
 import Heatmap from './screens/Heatmap';
 
 export default function Index() {
@@ -16,13 +15,16 @@ export default function Index() {
     <Router>
       <div>
         <header class="header">
-            <h1 class="logo"><a href="#">VISME</a></h1>
+            <h1 class="logo">VISME</h1>
             <ul>
                 <li>
                     <Link to="/">NEWS</Link>
                 </li>
                 <li>
                     <Link to="/Heatmap">HEATMAP</Link>
+                </li>
+                <li>
+                    <Link to="/Petitions">PETITIONS</Link>
                 </li>
             </ul>
         </header> 
@@ -33,6 +35,9 @@ export default function Index() {
           </Route>
           <Route path="/Heatmap">
             <Heatmap />
+          </Route>
+          <Route path="/Petitions">
+            <Petitions />
           </Route>
         </Switch>
       </div>

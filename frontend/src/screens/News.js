@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import './styles/News.css';
 
 function News() {
@@ -21,11 +15,9 @@ function News() {
       "location": "maryland",
     })
   }
-  console.log("hi!")
   fetch("http://127.0.0.1:5000/search", localOptions)
-    .then(response => response.json())
-    .then(data => { setLocalNews(data) })
-
+      .then(response => response.json())
+      .then(data => { setLocalNews(data) })
   return (
     <div className="App">
       { /*<header class="header">
@@ -42,9 +34,9 @@ function News() {
       <div>
         {localNews.map((article) => console.log(article))}
       </div>
-      <div>
+      <div style={{ display: "flex", overflowX: "scroll" }}>
         { localNews.map((article) => (
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: 'auto', margin: 20, height: "50%" }}>
             <Card.Img variant="top" src={article.image} />
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>

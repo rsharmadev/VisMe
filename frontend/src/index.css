@@ -75,3 +75,7 @@ Link {
 .header {
   background-color: #8785ff;
 }
+
+h1 {
+  margin: 50;
+}
