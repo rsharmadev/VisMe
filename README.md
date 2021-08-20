@@ -1,4 +1,4 @@
-# VisMe
+# VisMe - TeenHacks2021 Project
 
 ### What is VisMe
 * VisMe is a webapp that acts as a central hub for activism.
