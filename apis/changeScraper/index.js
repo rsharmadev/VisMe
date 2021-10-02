@@ -18,7 +18,7 @@ router.get('/', cors(), async (request, response) => {
 });
 
 router.post('/autofill', async (request, response) => {
-    console.log("test")
+    console.log(request.body)
     var autofiller = new autofill(request.body.link, request.body.firstName, request.body.lastName, request.body.email)
     autofiller.init()
 });
@@ -109,7 +109,7 @@ class autofill {
 
     async finalize() {
         try {
-            await this.page.waitFor(15000)
+            await this.page.waitFor(3000)
             await this.page.goto(`${this.url.split('?')[0]}/f?source_location=psf_petitions`);
             await this.page.waitFor(2000)
             await this.browser.close()

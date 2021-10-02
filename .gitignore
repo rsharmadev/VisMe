@@ -106,3 +106,4 @@ heatmap/data.json
 heatmap/json.js
 heatmap/output.json
 heatmap/require.js
+*.png

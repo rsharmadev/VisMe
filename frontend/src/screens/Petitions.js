@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Jumbotron, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/News.css';
+import { getByDisplayValue } from '@testing-library/react';
 
 function Petitions() {
     // Autofill stuff
@@ -14,30 +15,35 @@ function Petitions() {
         "text": "",
     }]);
     const [petitionIndex, setPetitionIndex] = useState(0)
+    console.log(petitionIndex);
+    console.log(petitionList);
     const handleSkip = () => setPetitionIndex(petitionIndex+1);
     const handleSign = () => {
+        let a = firstNames;
+        let b = lastNames;
+        let c = emails;
+        let d = petitionList[petitionIndex]["link"];
+        console.log(a,b,c,d);
         const signOptions = {
-            "method": "POST",
+            method: "POST",
             headers: {
-              "content-type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "link": petitionList[petitionIndex]["link"],
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
+                "link": d,
+                "firstName": a,
+                "lastName": b,
+                "email": c,
             })
         }
         fetch("http://127.0.0.1:4000/autofill", signOptions)
     };
 
     //Autofill info
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
+    const [firstNames, setFirstName] = useState("");
+    const [lastNames, setLastName] = useState("");
+    const [emails, setEmail] = useState("");
     
     useEffect(() => {
         let test = 0;
@@ -50,7 +56,7 @@ function Petitions() {
                 });
             console.log(petitionList)
         }
-    });
+    }, []);
 
     return (
         <div className="App">
@@ -66,21 +72,21 @@ function Petitions() {
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="firstName"
-                    onChange={data => setFirstName(data)}
+                    onChange={data => setFirstName(document.getElementById('firstName').value)}
                 />
                 <label htmlFor="formGroupExampleInput">Last Name</label>
                 <input
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="lastName"
-                    onChange={data => setLastName(data)}
+                    onChange={data => setLastName(document.getElementById('lastName').value)}
                 />
                 <label htmlFor="formGroupExampleInput">Email</label>
                 <input
                     type="text"
                     style={{width: "80%", marginLeft: "10%"}}
                     id="email"
-                    onChange={data => setEmail(data)}
+                    onChange={data => setEmail(document.getElementById('email').value)}
                 />
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

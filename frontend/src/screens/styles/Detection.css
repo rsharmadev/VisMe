@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Red Hat Display";
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h2,
+h3,
+a {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  margin: 0;
+  font-size: ;
+}
+
+.main-nav {
+  margin-top: 5px;
+}
+.logo a,
+.main-nav a {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+}
+
+.main-nav a {
+  color: white;
+  font-size: 18px;
+}
+
+.main-nav a:hover {
+  color: black;
+}
+
+.header {
+  background-color: #8785ff;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+@media (min-width: 769px) {
+  .header,
+  .main-nav {
+    display: flex;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    .header {
+      width: 80%;
+      margin: 0 auto;
+      max-width: 1150px;
+    }
+  }
+}
+
+@media (min-width: 1025px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.logoarea {
+  text-align: center;
+  margin-top: 3%;
+}
+img {
+  max-height: 130px;
+}
+.main {
+  text-align: center;
+}
+input {
+  margin-top: 2%;
+  min-width: 500px;
+  min-height: 50px;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding-left: 1%;
+}
+textarea {
+  margin-top: 2%;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 100px;
+  max-height: 100px;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding-left: 1%;
+}
+button {
+  background-color: #ff5e5e;
+  border-radius: 40px;
+  border: 0px;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Red Hat Display";
+  color: white;
+  margin-top: 3%;
+}
+button:hover {
+  background-color: black;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.linkbro {
+  color: rgb(102, 68, 253);
+  font-family: "Montserrat";
+  margin-left: 30%;
+  text-decoration: underline;
+  margin-top: -10%;
+}
+.search {
+  min-width: 1000px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.search:focus {
+  outline: none;
+}

@@ -12,6 +12,10 @@ import numpy as np
 import cv2
 import os
 
+
+ocrs = ''
+
+
 # Send the get request to the specified url
 def getResults(url):
     try:
@@ -34,6 +38,7 @@ def getFullResults(query):
 
 # Structure the full results
 def parse_results(response):
+    print(response)
     output = []
     results = response.html.find('.tF2Cxc')
     for result in results:
@@ -65,12 +70,14 @@ path = './img'
 
 def getJson(url):
     session = HTMLSession()
+
     response = json.loads(session.get(url).text)
     print(response)
     extractUrls(response)
     
 
 def extractUrls(json):
+    print(json)
     urls = []
     for item in json['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']:
         for key, value in item.items():
@@ -101,9 +108,12 @@ def search():
 
 
 
-
 @app.route('/getImages', methods=['POST'])
+@cross_origin()
 def getImages():
+    global ocrs
+    print('called')
+    ocrs = ''
     print(request.form)
     url = request.get_json()
     url = url['url']
@@ -112,16 +122,18 @@ def getImages():
         url += '?__a=1'
     else:
         url += '/?__a=1'
+    print(url)
     getJson(url)
     for filename in os.listdir('./img'):
         if filename.endswith('.png'):
             ocr(filename.replace('.png', ''))
-
-    return 'downloaded'
+    print(ocrs)
+    return jsonify(ocrs)
 
 
 
 def ocr(num):
+    global ocrs
     print(num)
     pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
     img = cv2.imread(f'./img/{num}.png')
@@ -132,7 +144,10 @@ def ocr(num):
     img = cv2.erode(gray, kernel, iterations=1)
     img = cv2.dilate(img, kernel, iterations=1)
     out_below = pytesseract.image_to_string(img)
-    print("OUTPUT:", out_below)
+    ocrs += out_below
+    # print(ocrs)
+    
+
 
 
 

@@ -310,7 +310,7 @@
 
 
       
-
+    
 
     function heatMapData(type) {
         let listOfLatLng = [];
@@ -330,18 +330,17 @@
 
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: { lat: 39.065170, lng: -76.974440 },
+        zoom: 5,
+        center: { lat: 39.8283, lng: -98.5795 },
         mapTypeId: "satellite",
         });
         heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatMapData(type),
         map: map,
-        radius: 85
+        radius: 100
         });
 
         new google.maps.Marker({
-        position: { lat: 39.065170, lng: -76.974440 },
         map,
         title: "Hello World!",
         });
@@ -351,36 +350,40 @@
     
     function toggleHeatmap() {
     for(state of states) {
-        if(json[state['state']]['protests'] > 2000) {
-          console.log('here 0')
-          const marker = new google.maps.Marker({
-          position: {lat: state['latitude'], lng: state['longitude']},
-          map,
-          title: state['state'],
-          icon: 'http://maps.google.com/mapfiles/kml/shapes/caution.png'
-          });
-          const infowindow = new google.maps.InfoWindow({
-            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
-          });
-          console.log('here 3')
-          marker.addListener('click', () => {
-            infowindow.open(map, marker);
-          });
-        } else if(json[state['state']]['protests'] > 500){
-          console.log('here 1')
-          const marker = new google.maps.Marker({
-          position: {lat: state['latitude'], lng: state['longitude']},
-          map,
-          title: state['state'],
-          icon: 'http://maps.google.com/mapfiles/kml/pal3/icon45.png'
-          });
-          const infowindow = new google.maps.InfoWindow({
-            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
-          });
-          console.log('here 3')
-          marker.addListener('click', () => {
-            infowindow.open(map, marker);
-          });
+        const highest = Object.entries(json[state['state']]['causes']).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+        const highest2 = Object.entries(json[state['state']]['types']).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+        if(type=='protests') {
+            console.log(highest);
+          if(json[state['state']]['protests'] > 2000) {
+            console.log('here 0')
+            const marker = new google.maps.Marker({
+            position: {lat: state['latitude'], lng: state['longitude']},
+            map,
+            title: state['state'],
+            icon: 'http://maps.google.com/mapfiles/kml/shapes/caution.png'
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
+            });
+            console.log('here 3')
+            marker.addListener('click', () => {
+              infowindow.open(map, marker);
+            });
+          } else if(json[state['state']]['protests'] > 500){
+            console.log('here 1')
+            const marker = new google.maps.Marker({
+            position: {lat: state['latitude'], lng: state['longitude']},
+            map,
+            title: state['state'],
+            icon: 'http://maps.google.com/mapfiles/kml/pal3/icon45.png'
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
+            });
+            console.log('here 3')
+            marker.addListener('click', () => {
+              infowindow.open(map, marker);
+            });
         } else {
           console.log('here 2')
           const marker = new google.maps.Marker({
@@ -390,13 +393,63 @@
           icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'
           });
           const infowindow = new google.maps.InfoWindow({
-            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>`,
+            content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
           });
           console.log('here 3')
           marker.addListener('click', () => {
             infowindow.open(map, marker);
           });
           }
+        } else {
+            console.log(highest);
+          if(json[state['state']]['fatalities'] > 20) {
+            console.log('here 0')
+            const marker = new google.maps.Marker({
+            position: {lat: state['latitude'], lng: state['longitude']},
+            map,
+            title: state['state'],
+            icon: 'http://maps.google.com/mapfiles/kml/shapes/caution.png'
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
+            });
+            console.log('here 3')
+            marker.addListener('click', () => {
+              infowindow.open(map, marker);
+            });
+          } else if(json[state['state']]['fatalities'] > 5){
+            console.log('here 1')
+            const marker = new google.maps.Marker({
+            position: {lat: state['latitude'], lng: state['longitude']},
+            map,
+            title: state['state'],
+            icon: 'http://maps.google.com/mapfiles/kml/pal3/icon45.png'
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
+            });
+            console.log('here 3')
+            marker.addListener('click', () => {
+              infowindow.open(map, marker);
+            });
+          } else {
+            console.log('here 2')
+            const marker = new google.maps.Marker({
+            position: {lat: state['latitude'], lng: state['longitude']},
+            map,
+            title: state['state'],
+            icon: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png'
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: `State: ${state['state']}<div></div>Protests: ${json[state['state']]['protests']}<div></div>Highest Cause: ${highest}<div></div>Highest Type: ${highest2}<div></div>Fatalities: ${json[state['state']]['fatalities']}`,
+            });
+            console.log('here 3')
+            marker.addListener('click', () => {
+              infowindow.open(map, marker);
+            });
+            }
+        }
+        
     }
 }
 
@@ -432,9 +485,11 @@
     let type = 'protests'
     function changeType() {
       if(type=='protests') {
-        type = 'fatalities'
+        type = 'fatalities';
+        document.getElementById('changeType').innerHTML = 'Change to Protests';
       } else {
-        type = 'protests'
+        type = 'protests';
+        document.getElementById('changeType').innerHTML = 'Change to Fatalities';
       }
       initMap();
     }
@@ -447,7 +502,7 @@
       <button onclick="changeGradient()">Change gradient</button>
       <button onclick="changeRadius()">Change radius</button>
       <button onclick="changeOpacity()">Change opacity</button>
-      <button onclick="changeType()">Change TYPE</button>
+      <button id="changeType" onclick="changeType()">Change to Fatalities</button>
 
     </div>
     <div id="map"></div>
